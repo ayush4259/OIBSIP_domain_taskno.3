@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🌡️Temperature Converter</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #2a4760, #0066ff);
+    }
+
+    .card {
+        width: 350px;
+        backdrop-filter: blur(18px);
+        background: rgba(255,255,255,0.15);
+        padding: 25px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity:0; transform:translateY(20px);}
+        to   {opacity:1; transform:translateY(0);}
+    }
+
+    h2 {
+        text-align: center;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    button:hover {
+        transform: scale(1.05);
+        background: #f5f8f9;
+    }
+
+    .result {
+        margin-top: 15px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Temperature Converter</h2>
+
+    <input id="tempInput" type="number" placeholder="Enter temperature">
+
+    <select id="unit">
+        <option value="C">Celsius → Fahrenheit</option>
+        <option value="F">Fahrenheit → Celsius</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+
+<script>
+function convert() {
+    let input = document.getElementById("tempInput").value;
+    let unit = document.getElementById("unit").value;
+    let output;
+
+    if(input === "") return;
+
+    if(unit === "C") {
+        output = `${((input * 9/5) + 32).toFixed(2)} °F`;
+    } else {
+        output = `${((input - 32) * 5/9).toFixed(2)} °C`;
+    }
+
+    document.getElementById("result").innerText = output;
+}
+</script>
+
+</body>
+</html>
